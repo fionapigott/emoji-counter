@@ -3,8 +3,7 @@ import ujson as json
 import pickle
 from collections import defaultdict
 
-#unicode_markers = {'\xc2':2, '\xe2':3, '\xe3':3, '\xf0':4}
-emoji_dict = pickle.load(open("emoji_dict_2.pkl","r"))
+emoji_dict = pickle.load(open("emoji_dict_utf-8.pkl","r"))
 unicode_markers = pickle.load(open("unicode_markers.pkl","r"))
 
 # Initialize counters and results dicts
@@ -86,9 +85,9 @@ for line in fileinput.FileInput():
     total_tweets += 1
     
     # Debugging
-    if len(emoji_in_tweet) == 0:
-        print body
-        print body_chars
+    #if len(emoji_in_tweet) == 0:
+    #    print body
+    #    print body_chars
     #print body
     #for x,y in used_emojis.items():
     #    print x, y
