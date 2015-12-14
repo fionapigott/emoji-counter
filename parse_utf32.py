@@ -85,22 +85,41 @@ for line in fileinput.FileInput():
     #print "************************************************************"
 
 print "************************************************************"
-print "used_emojis"
-for emoji,count in sorted(used_emojis.items(), key = lambda x:x[1], reverse = True)[0:10]:
-    print emoji.decode("utf-32").encode("utf-8"), count
-print ".\n.\n.\n"
-for emoji,count in sorted(used_emojis.items(), key = lambda x:x[1], reverse = True)[-10:]:
-    print emoji.decode("utf-32").encode("utf-8"), count
-print "tweets_with_this_emoji"
-for emoji,count in sorted(tweets_with_this_emoji.items(), key = lambda x:x[1], reverse = True)[0:10]:
-    print emoji.decode("utf-32").encode("utf-8"), count
-print ".\n.\n.\n"
-for emoji,count in sorted(tweets_with_this_emoji.items(), key = lambda x:x[1], reverse = True)[-10:]:
-    print emoji.decode("utf-32").encode("utf-8"), count
-print "emoji_per_tweet"
-for count, num_tweets in sorted(emoji_per_tweet.items())[0:10]:
-    print count, num_tweets
+emoji_table = []
+for emoji in used_emojis.keys():
+    emoji_table.append([("\xff\xfe\x00\x00" + emoji).decode("utf-32").encode("utf-8"), str(used_emojis[emoji]), str(tweets_with_this_emoji[emoji])])
+print "Emoji, utf-32 byte seq, number of appearances (twice in one Tweet = 2), number of Tweets with this emoji (twice in one Tweet = 1)"
+for line in sorted(emoji_table, key = lambda x:int(x[1]), reverse = True):
+    print line[0] + " , " + str([line[0]]).strip("][").ljust(34," ") + " , " + line[1] + " , " + line[2]
+print "\n"
+print "Number of emoji X, number of Tweets with X emoji"
+for count, num_tweets in sorted(emoji_per_tweet.items()):
+    print str(count) + " , " + str(num_tweets)
+print '\n'
 print "Total emoji used: {}".format(total_emoji_used)
 print "Total Tweets with emoji: {}".format(total_tweets_with_emoji)
 print "Total Tweets processed: {}".format(total_tweets)
+print "Fraction of Tweets with at least one emoji: {}".format(float(total_tweets_with_emoji)/float(total_tweets))
 print "************************************************************"
+
+# Debugging/ testing print
+#print "************************************************************"
+#print "used_emojis"
+#for emoji,count in sorted(used_emojis.items(), key = lambda x:x[1], reverse = True)[0:10]:
+#    print emoji.decode("utf-32").encode("utf-8"), count
+#print ".\n.\n.\n"
+#for emoji,count in sorted(used_emojis.items(), key = lambda x:x[1], reverse = True)[-10:]:
+#    print emoji.decode("utf-32").encode("utf-8"), count
+#print "tweets_with_this_emoji"
+#for emoji,count in sorted(tweets_with_this_emoji.items(), key = lambda x:x[1], reverse = True)[0:10]:
+#    print emoji.decode("utf-32").encode("utf-8"), count
+#print ".\n.\n.\n"
+#for emoji,count in sorted(tweets_with_this_emoji.items(), key = lambda x:x[1], reverse = True)[-10:]:
+#    print emoji.decode("utf-32").encode("utf-8"), count
+#print "emoji_per_tweet"
+#for count, num_tweets in sorted(emoji_per_tweet.items())[0:10]:
+#    print count, num_tweets
+#print "Total emoji used: {}".format(total_emoji_used)
+#print "Total Tweets with emoji: {}".format(total_tweets_with_emoji)
+#print "Total Tweets processed: {}".format(total_tweets)
+#print "************************************************************"
