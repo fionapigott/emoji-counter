@@ -16,7 +16,8 @@ The dictionaries are saved as pickled files emoji\_dict\_utf-{8,32}.pkl. Running
 
 Then run:
 cat tweet\_fie.json | python parse\_utf8.py (if you created a UTF-8 dict)
-Or
+
+Or:
 cat tweet\_fie.json | python parse\_utf32.py (if you created the UTF-32 dict)
 
 They both do exactly the same thing, just use different inputs and parse the strings differently. No huge speed difference. I've added them both as two examples of solving the problem.
