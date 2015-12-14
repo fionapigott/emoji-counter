@@ -1,8 +1,10 @@
 This is a quick python script to count emoji in Tweets. 
 
 Credit to http://apps.timwhitlock.info/emoji/tables/unicode and, of course, unicode.org.
+
 There is also a pretty helpful (for understanding character encodings) Stack Overflow post here: 
 http://stackoverflow.com/questions/700187/unicode-utf-ascii-ansi-format-differences
+
 And webpage:
 http://csharpindepth.com/Articles/General/Unicode.aspx
 
