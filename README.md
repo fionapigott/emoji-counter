@@ -1,4 +1,4 @@
-This is a quick python script to count emoji in Tweets. 
+This is a quick python script to count emoji in Tweets. The iPython notebook is a long explanation of how character encoding works.
 
 Credit to http://apps.timwhitlock.info/emoji/tables/unicode and, of course, unicode.org.
 
